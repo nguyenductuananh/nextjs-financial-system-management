@@ -8,7 +8,6 @@ const Login = (props) => {
   const { dispatch } = props;
   const cookies = new Cookies();
   const router = useRouter();
-  const [form] = Form.useForm();
   const onSubmit = async (values) => {
     let res = await fetch(LOGIN_URL, {
       method: "POST",

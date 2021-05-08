@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>The form enctype attribute</h1>
+
+    <form
+      action="http://192.168.1.5:8080/admin/item/add"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label for="fname">First name:</label>
+      <input type="text" id="name" name="name" /><br /><br />
+      <input type="file" id="picture" name="picture" />>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

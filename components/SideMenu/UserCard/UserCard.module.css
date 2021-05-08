@@ -1,0 +1,20 @@
+.wrapper {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.username {
+  font-size: 1.4rem;
+}
+.username_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.link {
+  font-size: 1.4rem;
+}
+.role {
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1.4rem;
+}

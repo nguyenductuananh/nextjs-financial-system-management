@@ -1,5 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
-const Document = () => {
+const CustomDoc = () => {
   return (
     <Html>
       <Head>
@@ -13,4 +13,4 @@ const Document = () => {
   );
 };
 
-export default Document;
+export default CustomDoc;

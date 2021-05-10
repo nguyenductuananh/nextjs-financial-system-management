@@ -1,5 +1,5 @@
-// export const HOST_URL = "https://htttquanli.herokuapp.com";
-export const HOST_URL = "http://192.168.1.5:8080";
+export const HOST_URL = "https://htttquanli.herokuapp.com";
+// export const HOST_URL = "http://192.168.1.5:8080";
 
 export const LOGIN_URL = `${HOST_URL}/login`;
 

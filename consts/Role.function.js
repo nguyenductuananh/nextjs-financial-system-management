@@ -1,23 +1,22 @@
 export const getFunction = (role) => {
   switch (role) {
-    case "sale": {
-      return [...sale];
+    case "saler": {
+      return [...all, ...saler];
     }
     case "manager": {
-      return [...manager];
+      return [...all, ...manager];
     }
-    case "warehousestaff": {
-      return [...warehousestaff];
+    case "staff2": {
+      return [...all, ...staff];
     }
     default: {
-      return [...manager, ...warehousestaff, ...sale];
+      return [...all, ...manager, ...staff, ...saler];
     }
   }
 };
-const sale = [
-  { title: "Xử lí hóa đơn", href: "/sale/xu-li-hoa-don" },
-  { title: "Thêm mặt hàng", href: "/them-mat-hang" },
-  { title: "Thêm loại", href: "/them-loai" },
+const saler = [
+  { title: "Thêm hóa đơn", href: "/saler/xu-li-hoa-don" },
+  { title: "Nhập phí duy trì", href: "/saler/them-phi-duy-tri" },
 ];
 const manager = [
   {
@@ -36,18 +35,24 @@ const manager = [
     title: "Xem thống kê phí duy trì",
     href: "/manager/xem-thong-ke-phi-duy-tri",
   },
-  {
-    title: "Xem thống kê phí nhập hàng",
-    href: "/manager/xem-thong-ke-phi-nhap-hang",
-  },
 ];
-const warehousestaff = [
+const staff = [
   {
     title: "Xuất kho",
-    href: "/warehousestaff/xuat-kho",
+    href: "/staff/xuat-kho",
   },
   {
     title: "Nhập kho",
-    href: "/warehousestaff/nhap-kho",
+    href: "/staff/nhap-kho",
+  },
+];
+const all = [
+  {
+    title: "Thêm loại đồng hồ",
+    href: "/them-loai",
+  },
+  {
+    title: "Thêm đồng hồ",
+    href: "/them-mat-hang",
   },
 ];

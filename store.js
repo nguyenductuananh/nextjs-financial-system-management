@@ -1,6 +1,7 @@
 import { createStore } from "redux";
-import rootReducer from "./reducer";
+import { createWrapper } from "next-redux-wrapper";
+import rootReducer from "./reducer/index";
 
-const store = createStore(rootReducer);
+export const makeStore = (context) => createStore(rootReducer);
 
-export default store;
+export const wrapper = createWrapper(makeStore, { debug: true });

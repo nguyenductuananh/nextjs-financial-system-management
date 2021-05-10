@@ -2,26 +2,54 @@ import { Table, Form, DatePicker, Button } from "antd";
 import { useEffect, useState } from "react";
 const { RangePicker } = DatePicker;
 import Layout from "../../components/Layout";
-
-const Page = () => {
-  //ten mat hang, Thoi gian ban, so luong, don gia, tong tien,
+import { GET_MAINTAINFEES_URL, FILTER_MAINTAINFEE_URL } from "../../path";
+const Page = (props) => {
+  const { maintainfees } = props;
+  const [dataList, setDataList] = useState([]);
   const columns = [
-    { title: "Tên đồng hồ" },
-    { title: "Thời gian bán" },
-    { title: "Số lượng" },
-    { title: "Đơn giá" },
-    { title: "Tổng tiền" },
+    { title: "STT", dataIndex: "index" },
+    { title: "Chi phí", dataIndex: "fee" },
+    { title: "Note", dataIndex: "note" },
   ];
   const [filterObject, setFilterObject] = useState({});
   const onSubmit = (values) => {
     let newFilter = {
-      startDate: values.date[0].toDate().toISOString(),
-      endDate: values.date[1].toDate().toISOString(),
+      startDate: values.date[0].toDate().toLocaleDateString(),
+      endDate: values.date[1].toDate().toLocaleDateString(),
     };
     setFilterObject(newFilter);
   };
+  const convertDataToTableData = (data) => {
+    return data.map((m, index) => {
+      return {
+        ...m,
+        index: `#${index + 1}`,
+      };
+    });
+  };
   useEffect(() => {
-    (async () => {})();
+    (async () => {
+      let url =
+        Object.keys(filterObject).length === 0
+          ? GET_MAINTAINFEES_URL
+          : FILTER_MAINTAINFEE_URL;
+
+      let res = await fetch(
+        url,
+        Object.keys(filterObject).length === 0
+          ? {}
+          : {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(filterObject),
+            }
+      );
+      let data = await res.json();
+      setDataList(convertDataToTableData(data));
+    })();
   }, [filterObject]);
   return (
     <Layout>
@@ -38,10 +66,20 @@ const Page = () => {
             Lọc
           </Button>
         </div>
-        <Table columns={columns} />
+        <Table columns={columns} dataSource={dataList} />
       </Form>
     </Layout>
   );
 };
 
 export default Page;
+
+export const getStaticProps = async () => {
+  let res = await fetch(GET_MAINTAINFEES_URL);
+  let data = await res.json();
+  return {
+    props: {
+      maintainfees: data,
+    },
+  };
+};

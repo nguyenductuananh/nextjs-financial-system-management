@@ -1,12 +1,17 @@
-import { default as store } from "../store";
-import { Provider } from "react-redux";
+import { wrapper } from "../store";
 import "../styles/global.css";
 function MyApp({ Component, pageProps }) {
-  return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
-  );
+  return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export const getInitialProps = async ({ Component, ctx }) => {
+  return {
+    pageProps: {
+      ...(Component.getInitialProps
+        ? await Component.getInitialProps(ctx)
+        : {}),
+      appProp: ctx.pathname,
+    },
+  };
+};
+export default wrapper.withRedux(MyApp);

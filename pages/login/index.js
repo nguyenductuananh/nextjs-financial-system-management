@@ -1,13 +1,19 @@
-import { Button, Form, Input } from "antd";
-import { useRouter } from "next/router";
-import withConnect from "../../connect";
-import Cookies from "universal-cookie";
-import { LOGIN_URL } from "../../path";
+import { Button, Form, Input, Modal } from "antd";
 import "antd/dist/antd.css";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Cookies from "universal-cookie";
+import withConnect from "../../connect";
+import { LOGIN_URL } from "../../path";
 const Login = (props) => {
+  const router = useRouter();
+  useEffect(() => {
+    if (props.role) {
+      router.push("/");
+    }
+  });
   const { dispatch } = props;
   const cookies = new Cookies();
-  const router = useRouter();
   const onSubmit = async (values) => {
     let res = await fetch(LOGIN_URL, {
       method: "POST",
@@ -25,9 +31,10 @@ const Login = (props) => {
       cookies.set("userid", data.id, {
         maxAge,
       });
+      console.log("USER", data);
       router.push("/");
     } catch (err) {
-      router.push("/login");
+      Modal.error({ content: "Đăng nhập sai, vui lòng kiểm tra lại" });
     }
   };
   return (
@@ -58,7 +65,7 @@ const Login = (props) => {
 };
 
 export default withConnect(
-  () => ({}),
+  (state) => ({ ...state.authReducer }),
   (dispatch) => {
     return { dispatch };
   }

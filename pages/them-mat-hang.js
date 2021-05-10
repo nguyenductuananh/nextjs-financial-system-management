@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import withConnect from "../connect";
-import { Form, Input, Button, Select, Upload } from "antd";
+import { Form, Input, Button, Select, Modal } from "antd";
 const { TextArea } = Input;
 const { Option } = Select;
 import { CATEGORY_URL, ADD_ITEM_URL } from "../path";
@@ -16,22 +16,25 @@ const Page = (props) => {
     return cate;
   };
   const handleSubmit = async (values) => {
-    let postObject = {
-      ...values,
-      //   createdBy: "TUANANH",
-      category: mapCategoryCodeToObject(values.category),
-      shortDescription: values.description.slice(0, 200),
-    };
-    let req = await fetch(ADD_ITEM_URL, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postObject),
-    });
-    let res = await req.json();
-    console.log("RESPONSE :", res);
+    try {
+      let postObject = {
+        ...values,
+        category: mapCategoryCodeToObject(values.category),
+        shortDescription: values.description.slice(0, 200),
+      };
+      let req = await fetch(ADD_ITEM_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postObject),
+      });
+      let res = await req.json();
+      Modal.success({ content: "Thêm thành công" });
+    } catch (err) {
+      Modal.error({ content: "Thêm thất bại. Vui lòng thử lại." });
+    }
   };
   return (
     <Layout>

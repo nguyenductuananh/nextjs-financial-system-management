@@ -7,8 +7,7 @@ import { getFunction } from "../../consts/Role.function";
 
 const SideMenu = (props) => {
   const { role, username } = props;
-  const lists = getFunction(role);
-
+  const lists = getFunction(role ? role.name : "");
   return (
     <div style={{ minHeight: "100vh" }}>
       <UserCard />

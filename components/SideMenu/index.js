@@ -11,7 +11,7 @@ const SideMenu = (props) => {
 
   return (
     <div style={{ minHeight: "100vh" }}>
-      <UserCard username={username} role={role} />
+      <UserCard />
       <Menu>
         {lists.map((item, index) => {
           return (

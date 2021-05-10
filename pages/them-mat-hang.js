@@ -22,7 +22,6 @@ const Page = (props) => {
       category: mapCategoryCodeToObject(values.category),
       shortDescription: values.description.slice(0, 200),
     };
-    console.log("POST OBJECT", postObject);
     let req = await fetch(ADD_ITEM_URL, {
       method: "POST",
       headers: {
@@ -58,7 +57,7 @@ const Page = (props) => {
           label="Giá :"
           rules={[{ message: "Giá không được bỏ trống", required: true }]}
         >
-          <Input type="number" step={1000} min={1000} />
+          <Input type="number" step={500} min={1000} />
         </Form.Item>
         <Form.Item
           name="category"
@@ -75,11 +74,6 @@ const Page = (props) => {
             ))}
           </Select>
         </Form.Item>
-        {/* <Form.Item name="pic" label="Ảnh">
-          <Upload>
-            <Button>Upload des image</Button>
-          </Upload>
-        </Form.Item> */}
         <Button type="primary" htmlType="submit">
           Thêm
         </Button>

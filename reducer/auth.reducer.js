@@ -5,13 +5,12 @@ const initState = {
   },
 };
 const authReducer = (state = initState, action) => {
-  console.log("AUTHREDUCER STATE :", state);
+  console.log("AUTHREDUCER ACTION :", action);
   switch (action.type) {
     case "GET_USER": {
       return { ...state };
     }
     case "SET_USER": {
-      console.log({ ...action.payload });
       return { ...action.payload };
     }
     default: {

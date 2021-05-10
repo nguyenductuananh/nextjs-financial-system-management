@@ -26,7 +26,7 @@ const manager = [
   },
   {
     title: "Xem thống kê thu",
-    href: "/manager/xem-thong-ke-doanh-thu",
+    href: "/manager/xem-thong-ke-thu",
   },
   {
     title: "Xem thống kê chi",
@@ -37,16 +37,8 @@ const manager = [
     href: "/manager/xem-thong-ke-phi-duy-tri",
   },
   {
-    title: "Xem thống kê lương nhân viên",
-    href: "/manager/xem-thong-ke-luong-nhan-vien",
-  },
-  {
     title: "Xem thống kê phí nhập hàng",
     href: "/manager/xem-thong-ke-phi-nhap-hang",
-  },
-  {
-    title: "Xem thống kê phí tiền thuế",
-    href: "/manager/xem-thong-ke-tien-thue",
   },
 ];
 const warehousestaff = [

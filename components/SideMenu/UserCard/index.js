@@ -1,20 +1,20 @@
 import Link from "next/link";
 import withConnect from "../../../connect";
-import styles from "./UserCard.module.css";
+import "antd/dist/antd.css";
+import { Card } from "antd";
 const UserCard = (props) => {
   const { username, role } = props;
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.username_wrapper}>
-        <p className={styles.username}>{`Tài khoản : ${username}`}</p>
+    <Card
+      title={`TK : ${username}`}
+      extra={
         <Link href="/logout">
-          <a className={styles.link}>Đăng xuất</a>
+          <a>Đăng xuất</a>
         </Link>
-      </div>
-      <div>
-        <p className={styles.role}>{`Vị trí : ${role.name}`}</p>
-      </div>
-    </div>
+      }
+    >
+      <p>{`Vị trí : ${role.name.toUpperCase()}`}</p>
+    </Card>
   );
 };
 export default withConnect((state) => ({ ...state.authReducer }))(UserCard);
